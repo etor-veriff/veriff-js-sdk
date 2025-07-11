@@ -19,7 +19,7 @@ export function createSession(
   const xhr = new XMLHttpRequest();
   xhr.open('POST', url, true);
   xhr.setRequestHeader('Content-type', 'application/json');
-  xhr.setRequestHeader('vrf-auth-client', apiKey);
+  xhr.setRequestHeader('x-auth-client', apiKey);
   if (headers['vrf-integration-id']) {
     xhr.setRequestHeader('vrf-integration-id', headers['vrf-integration-id']);
   }
