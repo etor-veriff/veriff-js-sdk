@@ -1,25 +1,7 @@
+import { MountOptions, Options, Params } from './interfaces';
 import './styles/style.css';
-import { createTemplate, PersonData, FormLabel } from './template';
+import { createTemplate } from './template';
 import { createSession } from './xhr';
-
-interface Options {
-  host?: string;
-  apiKey: string;
-  parentId: string;
-  onSession: (err, response) => void;
-}
-
-interface MountOptions {
-  formLabel?: FormLabel;
-  submitBtnText?: string;
-  loadingText?: string;
-}
-
-interface Params {
-  callback?: string;
-  person?: PersonData;
-  vendorData?: string;
-}
 
 const Veriff = (options: Options) => {
   const { host = 'https://api.veriff.me', apiKey, parentId, onSession } = options;
@@ -52,7 +34,7 @@ const Veriff = (options: Options) => {
       setParams({ callback, person: { givenName, lastName, idNumber }, vendorData });
       form.submitBtn.value = loadingText;
       form.submitBtn.disabled = true;
-      createSession(host, apiKey, params, (err, response) => {
+      createSession(host, apiKey, params, options.headers, (err, response) => {
         if (onSessionCallback) {
           onSessionCallback(err, response);
         }

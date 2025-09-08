@@ -1,11 +1,18 @@
+import { VeriffHeaders } from './interfaces';
 import { PersonData } from './template';
 
 const CREATED_RESPONSE_STATUS = 201;
+export interface RequestData {
+  callback?: string;
+  person?: PersonData;
+  vendorData?: string;
+}
 
 export function createSession(
   host: string,
   apiKey: string,
-  data: { callback?: string; person?: PersonData; vendorData?: string },
+  data: RequestData,
+  headers: VeriffHeaders = {},
   cb: (statusObject, resp) => void
 ): void {
   const url = `${host}/v1/sessions`;
@@ -13,6 +20,9 @@ export function createSession(
   xhr.open('POST', url, true);
   xhr.setRequestHeader('Content-type', 'application/json');
   xhr.setRequestHeader('x-auth-client', apiKey);
+  if (headers['vrf-integration-id']) {
+    xhr.setRequestHeader('vrf-integration-id', headers['vrf-integration-id']);
+  }
   xhr.setRequestHeader('x-origin', 'js-sdk');
   xhr.onreadystatechange = (): void => {
     if (xhr.readyState !== XMLHttpRequest.DONE) {

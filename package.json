@@ -1,6 +1,6 @@
 {
   "name": "@veriff/js-sdk",
-  "version": "1.5.1",
+  "version": "2.0.0",
   "description": "JavaScript SDK for Veriff identity verification",
   "main": "lib/veriff.js",
   "types": "lib/index.d.ts",
@@ -11,10 +11,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "eslint --ext=js,ts src"
   },
-  "author": "Ilia Aphtsiauri <ilia@veriff.me> (https://github.com/iaptsiauri)",
-  "contributors": [
-    "Maksim Kitsigin <maksim.kitsigin@veriff.com> (https://github.com/fixmk)"
-  ],
+  "author": "Veriff",
   "keywords": [
     "veriff",
     "sdk",
